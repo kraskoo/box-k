@@ -12,7 +12,7 @@
 			if (ev.originalEvent.keyCode === 27) hideBox();
 		});
 		var allBoxes = $('a[rel="box-k"]');
-		for (let box of allBoxes) {
+		for (var box of allBoxes) {
 			$(box).on('click', function (ev) {
 				ev.preventDefault();
 				showBox();
@@ -135,10 +135,10 @@
 	}
 	
 	function createBoxElements() {
-		$('body').append(
-			$('<div id="box-k">').append(
-				$('<div id="inner-k">').append(
-					$('<div id="close-k">').html('&times;')))).append(
-			$('<div id="flash-scrn-k">'));
+		$('body')
+			.append($('<div id="box-k">')
+				.append($('<div id="inner-k">')
+					.append($('<div id="close-k">').html('&times;'))))
+			.append($('<div id="flash-scrn-k">'));
 	}
 }());
