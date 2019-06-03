@@ -11,7 +11,7 @@
 		$(document).on('keydown', function (ev) {
 			if (ev.originalEvent.keyCode === 27) hideBox();
 		});
-		var allBoxes = $("a[rel='box-k']");
+		var allBoxes = $('a[rel="box-k"]');
 		for (let box of allBoxes) {
 			$(box).on('click', function (ev) {
 				ev.preventDefault();
@@ -52,7 +52,8 @@
 		setupWidthAndHeight(video[0], (innerK.width() * 0.8), (innerK.height() * 0.8));
 		video.css('padding-top', (Math.abs(video[0].height - innerK.height()) / 2) + 'px');
 		var href = $(el).attr('href');
-		var extension = href.split('.')[1].toLowerCase();
+		var fileParts = href.split('.');
+		var extension = fileParts[fileParts.length - 1].toLowerCase();
 		var source = $('<source>')
 			.attr('src', href)
 			.attr('type', 'video/' + extension);
