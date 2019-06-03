@@ -55,7 +55,7 @@
 		extension = getMIMEType(extension);
 		var source = $('<source>')
 			.attr('src', href)
-			.attr('type', 'video/' + extension);
+			.attr('type', extension);
 		video.append(source);
 		innerK.append(video);
 	}
