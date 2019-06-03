@@ -18,7 +18,7 @@
 	height: 100%;
 }
 
-#close {
+#close-k {
 	position: absolute;
 	top: 0;
 	right: 1vw;
@@ -28,7 +28,7 @@
 	font-family: Verdana;
 }
 
-#close:hover {
+#close-k:hover {
 	cursor: pointer;
 }
 

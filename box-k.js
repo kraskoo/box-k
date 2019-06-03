@@ -8,7 +8,7 @@
 	function onLoad() {
 		createBoxElements();
 		$('#flash-scrn-k')[0].addEventListener('click', hideBox);
-		$('#close')[0].addEventListener('click', hideBox);
+		$('#close-k')[0].addEventListener('click', hideBox);
 		document.addEventListener('keydown', function (ev) {
 			if (ev.keyCode === 27) hideBox();
 		});
@@ -143,7 +143,7 @@
 		boxK.setAttribute('id', 'box-k');
 		flashBox.setAttribute('id', 'flash-scrn-k');
 		innerK.setAttribute('id', 'inner-k');
-		closeMark.setAttribute('id', 'close');
+		closeMark.setAttribute('id', 'close-k');
 		closeMark.innerHTML += '&times;';
 		innerK.appendChild(closeMark);
 		boxK.appendChild(innerK);
