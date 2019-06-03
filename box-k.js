@@ -65,7 +65,8 @@
 			case '3gpp':
 			case '3gp':
 				return 'video/3gpp';
-			case 'ts': return 'video/mp2t';
+			case 'ts':
+				return 'video/mp2t';
 			case 'mpg':
 			case 'mpeg':
 				return 'video/mpeg';
@@ -86,7 +87,7 @@
 			case 'wmv':
 				return 'video/x-ms-wmv';
 			case 'avi':
-				return 'x-msvideo';
+				return 'video/x-msvideo';
 			case 'mp4':
 			default:
 				return 'video/mp4';
