@@ -35,9 +35,10 @@
 	
 	function appendOutterContent(el) {
 		var iframe = $('<iframe>').attr('src', $(el).attr('href')).attr('frameborder', 0);
-		setupWidthAndHeight(iframe[0], ($('#inner-k').width() * 0.8), ($('#inner-k').height() * 0.8));
-		iframe.css('display', 'block').css('margin', '0 auto').css('border', 'none').css('padding-top', (Math.abs(iframe[0].height - $('#inner-k').height()) / 2) + 'px');
-		$('#inner-k').append(iframe);
+		var innerK = $('#inner-k');
+		setupWidthAndHeight(iframe[0], (innerK.width() * 0.8), (innerK.height() * 0.8));
+		iframe.css('display', 'block').css('margin', '0 auto').css('border', 'none').css('padding-top', (Math.abs(iframe[0].height - innerK.height()) / 2) + 'px');
+		innerK.append(iframe);
 	}
 	
 	function appendVideo(el) {
@@ -92,8 +93,7 @@
 		}
 		
 		isStartedAnimation = true;
-		$('#flash-scrn-k').css('display', 'block');
-		$('#flash-scrn-k').animate({
+		$('#flash-scrn-k').css('display', 'block').animate({
 			opacity: '0.65'
 		},
 		300);
@@ -122,12 +122,13 @@
 		function () {
 			isBoxShown = false;
 		});
-		$('#flash-scrn-k').animate({
+		var flashScreenK = $('#flash-scrn-k');
+		flashScreenK.animate({
 			opacity: '0'
 		},
 		550,
 		function () {
-			$('#flash-scrn-k').css('display', 'none');
+			flashScreenK.css('display', 'none');
 			isStartedAnimation = false;
 		});
 	}
