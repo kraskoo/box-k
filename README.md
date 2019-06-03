@@ -2,6 +2,6 @@
 jQuery
 
 # Usage:
-&lt;a <strong>rel=&quot;box-k&quot;</strong> <strong>data-type=&quot;image&quot;</strong> href=&quot;http://someurl/someimage.jpg &quot;&gt;image&lt;/a&gt;<br />
-&lt;a <strong>rel=&quot;box-k&quot;</strong> <strong>data-type=&quot;video&quot;</strong> href=&quot;http://someurl/somevideo.mp4 &quot;&gt;video&lt;/a&gt;<br />
-&lt;a <strong>rel=&quot;box-k&quot;</strong> <strong>data-type=&quot;pdf&quot;</strong> href=&quot;http://someurl/somepdf.pdf &quot;&gt;pdf&lt;/a&gt;
+<a **rel="box-k"** **data-type="image"** **href="[http://someurl/someimage.jpg](http://someurl/someimage.jpg)"**>image&lt;/a>  
+<a **rel="box-k"** **data-type="video"** **href="[http://someurl/someimage.mp4](http://someurl/somevideo.mp4)"**>video&lt;/a>  
+<a **rel="box-k"** **data-type="pdf"** **href="[http://someurl/someimage.pdf](http://someurl/somevideo.pdf)"**>pdf&lt;/a>
