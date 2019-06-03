@@ -1,7 +1,7 @@
 (function () {
 	var isBoxShown = false;
 	var isStartedAnimation = false;
-	
+
 	window.addEventListener('load', onLoad);
 
 	function onLoad() {
@@ -20,7 +20,7 @@
 			});
 		}
 	}
-	
+
 	function appendContent(el, type) {
 		if (type === 'image') {
 			appendImage(el);
@@ -30,7 +30,7 @@
 			appendOutterContent(el);
 		}
 	}
-	
+
 	function appendOutterContent(el) {
 		var iframe = $('<iframe>').attr('src', $(el).attr('href')).attr('frameborder', 0);
 		var innerK = $('#inner-k');
@@ -38,9 +38,9 @@
 		iframe.css('display', 'block').css('margin', '0 auto').css('border', 'none').css('padding-top', (Math.abs(iframe[0].height - innerK.height()) / 2) + 'px');
 		innerK.append(iframe);
 	}
-	
+
 	function appendVideo(el) {
-		var innerK = $('#inner-k');	
+		var innerK = $('#inner-k');
 		var video = $('<video>')
 			.attr('controls', true)
 			.attr('controlsList', 'nodownload noremoteplayback')
@@ -51,14 +51,24 @@
 		video.css('padding-top', (Math.abs(video[0].height - innerK.height()) / 2) + 'px');
 		var href = $(el).attr('href');
 		var fileParts = href.split('.');
-		var extension = fileParts.length === 0 ? 'mp4' : fileParts[fileParts.length - 1].toLowerCase();
+		var extension = fileParts[fileParts.length - 1].toLowerCase();
+		if (!isVideoExtension(extension)) {
+			extension = 'mp4';
+		}
+
 		var source = $('<source>')
 			.attr('src', href)
 			.attr('type', 'video/' + extension);
 		video.append(source);
 		innerK.append(video);
 	}
-	
+
+	function isVideoExtension(ext) {
+		return [ 'webm', 'mkv', 'vob', 'ogv', 'drc', 'mts', 'm2ts',
+			'mov', 'qt', 'wmv', 'yuv', 'rm', 'rmvb', 'asf', 'amv', 'mp4', 'm4v', 'mpg',
+			'mpeg', 'mpe', 'mpv', 'svi', '3gp', '3g2', 'mxf', 'roq', 'nsv', 'flv', 'f4v', 'f4p' ].includes(ext);
+	}
+
 	function appendImage(el) {
 		var newImg = new Image();
 		newImg.src = $(el).attr('href');
@@ -73,65 +83,65 @@
 		});
 		innerK.append(newImg);
 	}
-	
+
 	function setupWidthAndHeight(el, width, height) {
 		el.width = width;
 		el.height = height;
 	}
-	
+
 	function removeLastAppended() {
 		var innerK = $('#inner-k');
 		if (innerK.children().length > 1) {
 			innerK.children().last().remove();
 		}
 	}
-	
+
 	function showBox() {
 		if (isBoxShown || isStartedAnimation) {
 			return;
 		}
-		
+
 		isStartedAnimation = true;
 		$('#flash-scrn-k').css('display', 'block').animate({
 			opacity: '0.65'
 		},
-		300);
+			300);
 		$('#box-k').animate({
 			top: '10vh'
 		},
-		500,
-		function () {
-			isBoxShown = true;
-			isStartedAnimation = false;
-		});
+			500,
+			function () {
+				isBoxShown = true;
+				isStartedAnimation = false;
+			});
 
 	}
-	
+
 	function hideBox() {
 		if (!isBoxShown || isStartedAnimation) {
 			return;
 		}
-		
+
 		isStartedAnimation = true;
 		removeLastAppended();
 		$('#box-k').animate({
 			top: '-2500px'
 		},
-		500,
-		function () {
-			isBoxShown = false;
-		});
+			500,
+			function () {
+				isBoxShown = false;
+			});
 		var flashScreenK = $('#flash-scrn-k');
 		flashScreenK.animate({
 			opacity: '0'
 		},
-		550,
-		function () {
-			flashScreenK.css('display', 'none');
-			isStartedAnimation = false;
-		});
+			550,
+			function () {
+				flashScreenK.css('display', 'none');
+				isStartedAnimation = false;
+			});
 	}
-	
+
 	function createBoxElements() {
 		$('body')
 			.append($('<div id="box-k">')
