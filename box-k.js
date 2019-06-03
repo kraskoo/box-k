@@ -26,8 +26,6 @@
 			appendImage(el);
 		} else if (type === 'video') {
 			appendVideo(el);
-		} else if (type === 'pdf') {
-			appendOutterContent(el);
 		} else {
 			appendOutterContent(el);
 		}
@@ -53,7 +51,7 @@
 		video.css('padding-top', (Math.abs(video[0].height - innerK.height()) / 2) + 'px');
 		var href = $(el).attr('href');
 		var fileParts = href.split('.');
-		var extension = fileParts[fileParts.length - 1].toLowerCase();
+		var extension = fileParts.length === 0 ? 'mp4' : fileParts[fileParts.length - 1].toLowerCase();
 		var source = $('<source>')
 			.attr('src', href)
 			.attr('type', 'video/' + extension);
@@ -66,12 +64,12 @@
 		newImg.src = $(el).attr('href');
 		var innerK = $('#inner-k');
 		newImg.addEventListener('load', function () {
-			var thisImg = $(this);
-			thisImg.css('max-width', thisImg.width() < innerK.width() ? (thisImg.width() * 0.9) + 'px' : (innerK.width() * 0.9) + 'px')
-				.css('max-height', thisImg.height() < innerK.height() ? (thisImg.height() * 0.9) + 'px' : (innerK.height() * 0.9) + 'px')
+			var self = $(this);
+			self.css('max-width', self.width() < innerK.width() ? (self.width() * 0.9) + 'px' : (innerK.width() * 0.9) + 'px')
+				.css('max-height', self.height() < innerK.height() ? (self.height() * 0.9) + 'px' : (innerK.height() * 0.9) + 'px')
 				.css('display', 'block')
 				.css('margin', '0 auto')
-				.css('padding-top', (Math.abs(thisImg.height() - innerK.height()) / 2) + 'px');
+				.css('padding-top', (Math.abs(self.height() - innerK.height()) / 2) + 'px');
 		});
 		innerK.append(newImg);
 	}
