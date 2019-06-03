@@ -51,11 +51,8 @@
 		video.css('padding-top', (Math.abs(video[0].height - innerK.height()) / 2) + 'px');
 		var href = $(el).attr('href');
 		var fileParts = href.split('.');
-		var extension = fileParts[fileParts.length - 1].toLowerCase();
-		if (!isVideoExtension(extension)) {
-			extension = 'mp4';
-		}
-
+		var extension = fileParts[fileParts.length - 1].toLowerCase();		
+		extension = getMIMEType(extension);
 		var source = $('<source>')
 			.attr('src', href)
 			.attr('type', 'video/' + extension);
@@ -63,10 +60,37 @@
 		innerK.append(video);
 	}
 
-	function isVideoExtension(ext) {
-		return [ 'webm', 'mkv', 'vob', 'ogv', 'drc', 'mts', 'm2ts',
-			'mov', 'qt', 'wmv', 'yuv', 'rm', 'rmvb', 'asf', 'amv', 'mp4', 'm4v', 'mpg',
-			'mpeg', 'mpe', 'mpv', 'svi', '3gp', '3g2', 'mxf', 'roq', 'nsv', 'flv', 'f4v', 'f4p' ].includes(ext);
+	function getMIMEType(ext) {
+		switch (ext) {
+			case '3gpp':
+			case '3gp':
+				return 'video/3gpp';
+			case 'ts': return 'video/mp2t';
+			case 'mpg':
+			case 'mpeg':
+				return 'video/mpeg';
+			case 'mov':
+			case 'qt':
+				return 'video/quicktime';
+			case 'webm':
+				return 'video/webm';
+			case 'flv':
+				return 'video/x-flv';
+			case 'm4v':
+				return 'video/x-m4v';
+			case 'mng':
+				return 'video/x-mng';
+			case 'asx':
+			case 'asf':
+				return 'video/x-ms-asf';
+			case 'wmv':
+				return 'video/x-ms-wmv';
+			case 'avi':
+				return 'x-msvideo';
+			case 'mp4':
+			default:
+				return 'video/mp4';
+		}
 	}
 
 	function appendImage(el) {
