@@ -51,17 +51,15 @@
 		video.css('padding-top', (Math.abs(video[0].height - innerK.height()) / 2) + 'px');
 		var href = $(el).attr('href');
 		var fileParts = href.split('.');
-		var extension = fileParts[fileParts.length - 1].toLowerCase();		
-		extension = getMIMEType(extension);
+		var extension = fileParts[fileParts.length - 1].toLowerCase();
 		var source = $('<source>')
 			.attr('src', href)
-			.attr('type', extension);
-		video.append(source);
-		innerK.append(video);
+			.attr('type', getVideoMIMEType(extension));
+		innerK.append(video.append(source));
 	}
 
-	function getMIMEType(ext) {
-		switch (ext) {
+	function getVideoMIMEType(extension) {
+		switch (extension) {
 			case '3gpp':
 			case '3gp':
 				return 'video/3gpp';
@@ -129,16 +127,13 @@
 		isStartedAnimation = true;
 		$('#flash-scrn-k').css('display', 'block').animate({
 			opacity: '0.65'
-		},
-			300);
+		}, 300);
 		$('#box-k').animate({
 			top: '10vh'
-		},
-			500,
-			function () {
-				isBoxShown = true;
-				isStartedAnimation = false;
-			});
+		}, 500, function () {
+			isBoxShown = true;
+			isStartedAnimation = false;
+		});
 
 	}
 
@@ -151,20 +146,16 @@
 		removeLastAppended();
 		$('#box-k').animate({
 			top: '-2500px'
-		},
-			500,
-			function () {
-				isBoxShown = false;
-			});
+		}, 500, function () {
+			isBoxShown = false;
+		});
 		var flashScreenK = $('#flash-scrn-k');
 		flashScreenK.animate({
 			opacity: '0'
-		},
-			550,
-			function () {
-				flashScreenK.css('display', 'none');
-				isStartedAnimation = false;
-			});
+		}, 550, function () {
+			flashScreenK.css('display', 'none');
+			isStartedAnimation = false;
+		});
 	}
 
 	function createBoxElements() {
